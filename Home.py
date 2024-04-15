@@ -127,6 +127,7 @@ dicam.eval()
 dicam.to(device)
 
 def main():
+    st.set_page_config(page_title="DEHAZE")
     st.title("Underwater Image Dehazing App")
     st.write("Upload a hazy image and press the Dehaze button!")
 

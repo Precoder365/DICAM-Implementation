@@ -5,7 +5,7 @@ pillow==10.2.0
 pytorch-msssim
 pytorch-ssim==0.1
 scikit-image==0.20.0
-torch==2.0.0
-torchvision==0.15.0
+torch
+torchvision
 tqdm==4.65.0
 streamlit

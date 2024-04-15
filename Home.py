@@ -120,7 +120,7 @@ class CustomDataset(Dataset):
 
 dicam = DICAM()
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-CHKPT_DIR = r"C:\DEVELOPMENT\Semester-projects\DIP\DICAM-Implementation\ckpts\UIEB\DICAM_60.pt"
+CHKPT_DIR = "ckpts/UIEB/DICAM_60.pt"
 checkpoint = torch.load(CHKPT_DIR, map_location=device)
 dicam.load_state_dict(checkpoint['model_state_dict'])
 dicam.eval()

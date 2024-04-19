@@ -140,15 +140,23 @@ def main():
         if st.button("Dehaze"):
             with st.spinner('Dehazing...'):
                 transform = transforms.Compose([
-                    transforms.Resize((256, 256)),
+                    # transforms.Resize((256, 256)),
                     transforms.ToTensor(),
                 ])
                 image_tensor = transform(image).unsqueeze(0).to(device)
 
                 output = dicam(image_tensor)
                 output = (output.clamp_(0.0, 1.0)[0].detach().cpu().numpy().transpose(1, 2, 0) * 255.0).astype('uint8')
+                
+                # st.image(output, caption="Dehazed Image", use_column_width=True)
 
-                st.image(output, caption="Dehazed Image", use_column_width=True)
+                # Upscale the output image to 8K resolution
+                output_pil = Image.fromarray(output)
+                output_pil = output_pil.resize((7680, 4320), Image.LANCZOS)
+                output_8k = np.array(output_pil)
+
+                st.image(output_8k, caption="Dehazed Image (8K)", use_column_width=True)
+
                 
 if __name__ == "__main__":
     main()
